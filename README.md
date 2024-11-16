@@ -1,9 +1,6 @@
-# Fall 2024 Assignment 03 - Methods, Arrays, and File I/O
-__Weight:__ 15% of final mark
+# Methods, Arrays, and File I/O
 
-__Submission requirements:__ On or before the deadline, commit a Visual Studio 2022 project to the GitHub repository. __You must commit and push to the classroom repository supplied for the assignment__; do not create your own repository. It is your responsibility to ensure that your work is in the correct repository. ___Work not in the repository will not be graded___.
-
-## Context
+## Context - Problem Statement
 A friend of yours runs a food truck. They need help building a sound financial picture of how their small business performs every month. They shared with you that it would be nice to have a program that could produce some basic sales stats for them to review, such as the average daily sales, highest sales day, lowest sales day, etc. After hearing about their plight, you offer your expertise to help them by building a program to help them out. It should be simple enough ...
 
 ### Requirements
