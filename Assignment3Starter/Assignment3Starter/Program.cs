@@ -80,7 +80,7 @@ while (displayMainMenu)
 				{
 					filename = PromptForFilename();
                     // TODO: call the SaveSalesFile method here
-                    SaveSalesFile(filename, sales, dates, count);
+                    SaveSalesFile(filename, sales, dates, count);                    
                     Console.WriteLine($"Data saved to {filename}");
                 }
 				else
@@ -155,7 +155,7 @@ while (displayMainMenu)
 					{
 						case "A": //[A]verage Sales
 								  // TODO: uncomment the following and call the Mean method below
-							mean = mean(sales);
+							mean = Mean(sales);
 							month = dates[0].Substring(0, 3);
 							year = dates[0].Substring(7, 4);
 							Console.WriteLine($"The mean sales for {month} {year} is: {mean:C}");
@@ -163,7 +163,7 @@ while (displayMainMenu)
 							break;
 						case "H": //[H]ighest Sales
 								  // TODO: uncomment the following and call the Largest method below
-							largest = largest(sales);
+							largest = Largest(sales);
 							month = dates[0].Substring(0, 3);
 							year = dates[0].Substring(7, 4);
 							Console.WriteLine($"The largest sales for {month} {year} is: {largest:C}");
@@ -171,7 +171,7 @@ while (displayMainMenu)
 							break;
 						case "L": //[L]owest Sales
 								  // TODO: uncomment the following and call the Smallest method below
-							smallest = smallest(sales);
+							smallest = Smallest(sales);
 							month = dates[0].Substring(0, 3);
 							year = dates[0].Substring(7, 4);
 							Console.WriteLine($"The smallest sales for {month} {year} is: {smallest:C}");
@@ -194,7 +194,7 @@ while (displayMainMenu)
 			break;
 		case "D": //[D]isplay Main Menu
 				  // TODO: call the DisplayMainMenu method
-			displayMainMenu();
+			DisplayMainMenu();
 			break;
 		case "Q": //[Q]uit Program
 			quit = Prompt("Are you sure you want to quit (y/N)? ").ToLower().Equals("y");
@@ -284,19 +284,19 @@ static void DisplayAnalysisMenu()
 
 
 // TODO: create the Largest method
-static double Largest(List<double> sales)
+static double Largest(double[] sales)
 {
     return sales.Max();
 }
 
 // TODO: create the Smallest method
-static double Smallest(List<double> sales)
+static double Smallest(double[] sales)
 {
     return sales.Min();
 }
 
 // TODO: create the Mean method
-static double Mean(List<double> sales)
+static double Mean(double[] sales)
 {
     return sales.Average();
 }
@@ -305,19 +305,30 @@ static double Mean(List<double> sales)
 
 
 // TODO: create the DisplayEntries method
-static void DisplayEntries(List<double> sales)
+static void DisplayEntries(double[] sales, string[] dates)
 {
-    if (sales.Count == 0)
+    try
     {
-        Console.WriteLine("No sales entries to display.");
-    }
-    else
-    {
-        Console.WriteLine("Sales Entries:");
-        foreach (var sale in sales)
+        if (sales.Length != dates.Length)
         {
-            Console.WriteLine($"{sale:C}");  // Display sales in currency format
+            throw new ArgumentException("The number of sales must match the number of dates.");
         }
+
+        Console.WriteLine("Sales Data:");
+        Console.WriteLine("Date\t\tSale Amount");
+        Console.WriteLine("-------------------------");
+
+        for (int i = 0; i < sales.Length; i++)
+        {
+            Console.WriteLine($"{dates[i],-10}\t{sales[i]:F2}");
+        }
+
+        Console.WriteLine("-------------------------");
+        Console.WriteLine($"{sales.Length} records displayed.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error displaying entries: {ex.Message}");
     }
 }
 
@@ -363,48 +374,68 @@ static int EnterSales(double[] sales, string[] dates, ref int currentIndex)
 }
 
 // TODO: create the LoadSalesFile method
-static void LoadSalesFile(List<double> sales)
+static int LoadSalesFile(string fileName, double[] sales, string[] dates)
 {
-    string fileName = Prompt("Enter the file path to load sales from: ");
-
     try
     {
-        // Read all lines from the file
-        string[] lines = File.ReadAllLines(fileName);
-
-        // Clear the existing sales list before loading new data
-        sales.Clear();
-
-        // Convert each line into a double and add to sales list
-        foreach (string line in lines)
+        // Check if the file exists
+        if (!File.Exists(fileName))
         {
-            if (double.TryParse(line, out double saleAmount))
-            {
-                sales.Add(saleAmount);
-            }
-            else
-            {
-                Console.WriteLine($"Skipping invalid entry: {line}");
-            }
+            throw new FileNotFoundException($"The file '{fileName}' does not exist.");
         }
+
+        // Read all lines from the file
+        var lines = File.ReadAllLines(fileName);
+
+        // Split each line into dates and sales, and validate the format
+        var data = lines.Select(line =>
+        {
+            var parts = line.Split(',');
+            if (parts.Length != 2 || !double.TryParse(parts[1].Trim(), out _))
+            {
+                throw new FormatException($"Invalid format in line: {line}");
+            }
+            return (Date: parts[0].Trim(), Sale: double.Parse(parts[1].Trim()));
+        }).ToList();
+
+        // Populate dates and sales arrays
+        dates = data.Select(d => d.Date).ToArray();
+        sales = data.Select(d => d.Sale).ToArray();
+
         Console.WriteLine("Sales data loaded successfully.");
+        return data.Count;
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Error loading file: {ex.Message}");
+        sales = Array.Empty<double>();
+        dates = Array.Empty<string>();
+        return 0;
     }
 }
 
 
 // TODO: create the SaveSalesFile method
-static void SaveSalesFile(List<double> sales)
+static void SaveSalesFile(string fileName, double[] sales, string[] dates, int count)
 {
-    string fileName = Prompt("Enter the file path to save sales to: ");
-
     try
     {
-        // Write each sale amount to the file
-        File.WriteAllLines(fileName, sales.Select(s => s.ToString()));
+        if (sales.Length != dates.Length)
+        {
+            throw new ArgumentException("The number of sales must match the number of dates.");
+        }
+
+        if (count > sales.Length)
+        {
+            throw new ArgumentException("Count cannot exceed the number of sales.");
+        }
+
+        // Combine sales and dates into formatted strings
+        var lines = Enumerable.Range(0, count)
+                                .Select(i => $"{dates[i]}, {sales[i]:F2}");
+
+        // Write to the file
+        File.WriteAllLines(fileName, lines);
 
         Console.WriteLine("Sales data saved successfully.");
     }
@@ -412,47 +443,56 @@ static void SaveSalesFile(List<double> sales)
     {
         Console.WriteLine($"Error saving file: {ex.Message}");
     }
+    
 }
 
 
 // ++++++++++++++++++++++++++++++++++++ Difficulty 3 ++++++++++++++++++++++++++++++++++++
 
 // TODO: create the EditEntries method
-static void EditEntries(List<double> sales)
+static void EditEntries(double[] sales, string[] dates, int count)
 {
-    if (sales.Count == 0)
+    try
     {
-        Console.WriteLine("No sales entries to edit.");
-        return;
-    }
-
-    // Display current entries
-    Console.WriteLine("Current Sales Entries:");
-    for (int i = 0; i < sales.Count; i++)
-    {
-        Console.WriteLine($"{i + 1}. {sales[i]:C}");
-    }
-
-    int index;
-    bool validIndex = false;
-
-    // Prompt the user for a valid index
-    while (!validIndex)
-    {
-        string input = Prompt("Enter the number of the entry you wish to edit: ");
-        validIndex = int.TryParse(input, out index) && index >= 1 && index <= sales.Count;
-
-        if (!validIndex)
+        if (sales.Length != dates.Length)
         {
-            Console.WriteLine("Invalid entry. Please enter a number corresponding to an existing sale.");
+            throw new ArgumentException("The number of sales must match the number of dates.");
         }
+
+        if (count > sales.Length)
+        {
+            throw new ArgumentException("Count cannot exceed the number of sales.");
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine($"Entry {i + 1}:");
+            Console.WriteLine($"Current Date: {dates[i]}");
+            Console.WriteLine($"Current Sale: {sales[i]}");
+
+            Console.Write("Enter new date (or press Enter to keep current): ");
+            string newDate = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(newDate))
+            {
+                dates[i] = newDate;
+            }
+
+            Console.Write("Enter new sale amount (or press Enter to keep current): ");
+            string newSaleInput = Console.ReadLine();
+            if (double.TryParse(newSaleInput, out double newSale))
+            {
+                sales[i] = newSale;
+            }
+
+            Console.WriteLine("Entry updated successfully.\n");
+        }
+
+        Console.WriteLine("All entries edited successfully.");
     }
-
-    // Prompt for the new sales value
-    double newSaleAmount = PromptDouble("Enter the new sales amount: ");
-    sales[index - 1] = newSaleAmount;  // Update the sale at the specified index
-
-    Console.WriteLine($"Sales entry {index} updated to {newSaleAmount:C}");
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error editing entries: {ex.Message}");
+    }
 }
 
 
@@ -611,4 +651,36 @@ static string PromptForFilename()
 		}
 	} while (!isValidFilename);
 	return filename;
+}
+
+/// <summary>
+/// Displays chart of sales. 
+/// Includes exception handling.
+/// </summary>
+/// <returns>A display of charts</returns>
+static void DisplayChart(double[] sales)
+{
+    try
+    {
+        if (sales == null || sales.Length == 0)
+        {
+            throw new ArgumentException("Sales data is empty or null.");
+        }
+
+        Console.WriteLine("Sales Chart:");
+        Console.WriteLine("-------------------------");
+
+        for (int i = 0; i < sales.Length; i++)
+        {
+            int barLength = (int)(sales[i] / 10); // Scale sales for the bar length
+            string bar = new string('*', barLength);
+            Console.WriteLine($"Sale {i + 1}: {bar} ({sales[i]:F2})");
+        }
+
+        Console.WriteLine("-------------------------");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error displaying chart: {ex.Message}");
+    }
 }

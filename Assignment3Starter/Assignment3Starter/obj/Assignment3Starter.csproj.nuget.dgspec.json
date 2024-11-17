@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jenrola\\Desktop\\NAIT\\FALL 2024\\GitHub\\CPSC1012\\1012-sept-2024-A06-assignment-3-Frances-Odunaiya.git\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj": {}
+    "C:\\Users\\BUSSYADEX\\Documents\\Sales-Data-Analysis_fileIO\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jenrola\\Desktop\\NAIT\\FALL 2024\\GitHub\\CPSC1012\\1012-sept-2024-A06-assignment-3-Frances-Odunaiya.git\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj": {
+    "C:\\Users\\BUSSYADEX\\Documents\\Sales-Data-Analysis_fileIO\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jenrola\\Desktop\\NAIT\\FALL 2024\\GitHub\\CPSC1012\\1012-sept-2024-A06-assignment-3-Frances-Odunaiya.git\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj",
+        "projectUniqueName": "C:\\Users\\BUSSYADEX\\Documents\\Sales-Data-Analysis_fileIO\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj",
         "projectName": "Assignment3Starter",
-        "projectPath": "C:\\Users\\Jenrola\\Desktop\\NAIT\\FALL 2024\\GitHub\\CPSC1012\\1012-sept-2024-A06-assignment-3-Frances-Odunaiya.git\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj",
-        "packagesPath": "C:\\Users\\Jenrola\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jenrola\\Desktop\\NAIT\\FALL 2024\\GitHub\\CPSC1012\\1012-sept-2024-A06-assignment-3-Frances-Odunaiya.git\\Assignment3Starter\\Assignment3Starter\\obj\\",
+        "projectPath": "C:\\Users\\BUSSYADEX\\Documents\\Sales-Data-Analysis_fileIO\\Assignment3Starter\\Assignment3Starter\\Assignment3Starter.csproj",
+        "packagesPath": "C:\\Users\\BUSSYADEX\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BUSSYADEX\\Documents\\Sales-Data-Analysis_fileIO\\Assignment3Starter\\Assignment3Starter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jenrola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BUSSYADEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -61,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

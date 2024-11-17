@@ -1,0 +1,15 @@
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\bin\Debug\net8.0\Assignment3Starter.exe
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\bin\Debug\net8.0\Assignment3Starter.deps.json
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\bin\Debug\net8.0\Assignment3Starter.runtimeconfig.json
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\bin\Debug\net8.0\Assignment3Starter.dll
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\bin\Debug\net8.0\Assignment3Starter.pdb
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.AssemblyInfoInputs.cache
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.AssemblyInfo.cs
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.csproj.CoreCompileInputs.cache
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.sourcelink.json
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.dll
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\refint\Assignment3Starter.dll
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.pdb
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\Assignment3Starter.genruntimeconfig.cache
+C:\Users\BUSSYADEX\Documents\Sales-Data-Analysis_fileIO\Assignment3Starter\Assignment3Starter\obj\Debug\net8.0\ref\Assignment3Starter.dll
