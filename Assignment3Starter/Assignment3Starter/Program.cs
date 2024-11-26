@@ -3,6 +3,7 @@
 /// 
 /// Author: Frances Odunaiya
 /// Date: November 1st, 2024
+/// Last Updated: November 26th, 2024
 /// Purpose: Allows user to enter/save/load/edit/view daily sales values
 ///          from a file. Allows and displays simple data analysis
 ///          (mean/max/min/graph) of sales values for a given month.
@@ -499,30 +500,40 @@ static void EditEntries(double[] sales, string[] dates, int count)
 // ++++++++++++++++++++++++++++++++++++ Difficulty 4 ++++++++++++++++++++++++++++++++++++
 
 // TODO: create the DisplaySalesChart method
-static void DisplaySalesChart(List<double> sales)
+static void DisplaySalesChart(double[] sales)
 {
-    if (sales.Count == 0)
+    if (sales == null || sales.Length == 0)
     {
         Console.WriteLine("No sales data to display.");
         return;
     }
 
-    Console.WriteLine("Sales Bar Chart:");
-    double maxSale = sales.Max(); // Find the highest sales value to normalize the chart
+    Console.WriteLine("========== Sales Bar Chart ==========\n");
+
+    double maxSale = sales.Max();
+
+    // Prevent division by zero if all sales values are zero
+    if (maxSale == 0)
+    {
+        Console.WriteLine("All sales values are zero. No meaningful chart to display.");
+        return;
+    }
+
+    const int maxBarLength = 50; // Maximum length of the bar
 
     foreach (double sale in sales)
     {
-        // Normalize the sale value to fit within a bar length (e.g., 50 characters max for the highest sale)
-        int barLength = (int)((sale / maxSale) * 50);
+        // Normalize the sale value to fit within maxBarLength
+        int barLength = (int)((sale / maxSale) * maxBarLength);
 
-        // Print a line with the sale and the corresponding bar
-        Console.WriteLine($"{sale:C}: {new string('*', barLength)}");
+        // Print a line with the sale amount and corresponding bar
+        Console.WriteLine($"{sale,10:C} | {new string('*', barLength)}");
     }
 
+    Console.WriteLine("\n=====================================");
     Console.WriteLine("\nPress <Enter> to continue...");
     Console.ReadLine();
 }
-
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++++ Additional Provided Methods ++++++++++++++++++++++++++++++++++++
